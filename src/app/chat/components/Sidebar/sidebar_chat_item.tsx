@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-
+import { PiDotsThreeVerticalLight } from "react-icons/pi";
 const SidebarChatItem = ({ name }: { name: string }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -15,7 +15,7 @@ const SidebarChatItem = ({ name }: { name: string }) => {
           onClick={() => setMenuOpen((prev) => !prev)}
           className="text-gray-500 hover:text-gray-700"
         >
-          ⋮
+          <PiDotsThreeVerticalLight/>
         </button>
 
         {/* Dropdown Menu */}

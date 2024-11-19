@@ -3,8 +3,10 @@ import React from "react";
 import { IoChatboxEllipses } from "react-icons/io5";
 import SidebarCategory from "./SidebarCategory";
 import useSidebar from "@/hooks/useSidebar";
-import { GoSidebarCollapse } from "react-icons/go";
-import { GoSidebarExpand } from "react-icons/go";
+import { useMediaQuery } from "react-responsive";
+import { BiMenuAltRight } from "react-icons/bi";
+import EditableTitle from "./message_title";
+
 const chatData = {
   Today: [
     { id: 1, name: "Chat 1" },
@@ -25,33 +27,45 @@ const chatData = {
 };
 
 const Sidebar = () => {
-  const {isSidebarOpen, toggleSidebar} = useSidebar()
+  const { isSidebarOpen, toggleSidebar } = useSidebar();
+  const isMobile = useMediaQuery({ query: "(max-width: 640px)" });
+
+  const handleTitleChange = (newTitle: string) => {
+    console.log("Title updated to:", newTitle);
+  };
+
   return (
-    <div className="w-full h-12 bg-background-secondary shadow-xl sm:w-60 sm:h-full">
-      <div className="flex justify-between items-center p-2 h-12 bg-secondary">
-
+    <div className="w-full h-12 bg-white shadow-xl sm:w-60 sm:h-full px-2">
+      {/* Header Section */}
+      <div className="flex justify-between items-center p-2 h-12 bg-">
         <div className="flex items-center gap-2">
-          {
-            isSidebarOpen ? (
-              <GoSidebarCollapse className="text-3xl text-primary" onClick={toggleSidebar} />
-            ) : (
-              <GoSidebarExpand className="text-3xl text-primary" onClick={toggleSidebar} />
-            )
-          }
-
-        <h1 className="text-lg font-bold text-text">Untitled 1</h1>
+          {!isMobile ? null : (
+            <BiMenuAltRight
+              className="text-3xl text-primary cursor-pointer hover:scale-110 transition-all duration-300"
+              onClick={toggleSidebar}
+            />
+          )}
+          {/* Editable Title */}
+          <EditableTitle title="Untitled 1" onChange={handleTitleChange} />
         </div>
-        <IoChatboxEllipses className="text-3xl text-primary" />
+        <IoChatboxEllipses className="text-3xl text-primary cursor-pointer hover:scale-110 transition-all duration-300" />
       </div>
+      {/* Divider */}
+      <hr className="border-t border-gray-300" />
 
-      <div className= {`${isSidebarOpen ? 'translate-x-0' : '-translate-x-full sm:translate-x-0'} z-50 transition-all duration-300 ease-in-out top-[calc(64px+56px)] h-[calc(100vh-64px-56px)] sm:h-[calc(100vh-64px-48px)] w-full sm:w-60 bg-secondary sm:static overflow-y-auto overflow-x-hidden`}>
-        <div className="w-full h-screen bg-[#f5f5f5] p-4 overflow-y-auto">
-          {/* Sidebar Header */}
+      {/* Sidebar Content */}
+      <div
+        className={`${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full sm:translate-x-0"
+        } 
+          z-50 transition-all duration-300 ease-in-out top-[calc(64px+56px)] h-[calc(100vh-64px-56px)] 
+          sm:h-[calc(100vh-64px-48px)] w-full sm:w-60 bg-secondary sm:static overflow-y-auto overflow-x-hidden`}
+      >
+        <div className="w-full h-screen bg-white p-4 overflow-y-auto">
           <h2 className="text-lg font-bold text-text mb-4">Conversations</h2>
-
           {/* Render Categories */}
           {Object.entries(chatData).map(([title, chats]) => (
-            <SidebarCategory  key={title} title={title} chats={chats} />
+            <SidebarCategory key={title} title={title} chats={chats} />
           ))}
         </div>
       </div>
