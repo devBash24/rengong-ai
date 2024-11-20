@@ -14,15 +14,15 @@ const TextArea = () => {
   };
 
   return (
-    <form className="relative w-full  mx-auto px-4 py-2 overflow-auto">
+    <form className="relative w-full  mx-auto px-4  overflow-hidden flex-shrink-1">
       <textarea
         ref={textAreaRef}
         placeholder="Send a message"
         onInput={handleInput}
         rows={1}
-        className="w-full p-3 text-base sm:text-lg text-text placeholder-gray-500 bg-white rounded-lg shadow-md focus:ring-4 focus:ring-secondary focus:outline-none transition-all duration-200 ease-in-out resize-none overflow-hidden"
+        className="w-full p-1 text-base sm:text-lg text-text placeholder-gray-500 bg-white rounded-lg shadow-md focus:ring-4 focus:ring-secondary focus:outline-none transition-all duration-200 ease-in-out  overflow-hidden"
         style={{
-          minHeight: "2.5rem", // Matches the initial height for a single line
+          minHeight: "2rem", // Matches the initial height for a single line
           maxHeight: "10rem", // Restricts maximum expansion
         }}
       />
