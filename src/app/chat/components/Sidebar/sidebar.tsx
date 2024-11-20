@@ -35,7 +35,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="w-full h-12 bg-white shadow-xl sm:w-60 sm:h-full px-2">
+    <div className="w-full h-12 bg-white shadow-xl sm:w-60 sm:h-full z-50 ">
       {/* Header Section */}
       <div className="flex justify-between items-center p-2 h-12 bg-">
         <div className="flex items-center gap-2">
@@ -56,10 +56,10 @@ const Sidebar = () => {
       {/* Sidebar Content */}
       <div
         className={`${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full sm:translate-x-0"
+          isSidebarOpen ? "translate-x-0" : "-translate-x-[100vw] sm:translate-x-0"
         } 
           z-50 transition-all duration-300 ease-in-out top-[calc(64px+56px)] h-[calc(100vh-64px-56px)] 
-          sm:h-[calc(100vh-64px-48px)] w-full sm:w-60 bg-secondary sm:static overflow-y-auto overflow-x-hidden`}
+          sm:h-[calc(100vh-64px-56px)] w-full sm:w-60 sm:static overflow-y-auto overflow-x-hidden`}
       >
         <div className="w-full h-screen bg-white p-4 overflow-y-auto">
           <h2 className="text-lg font-bold text-text mb-4">Conversations</h2>
