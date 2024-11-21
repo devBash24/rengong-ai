@@ -1,13 +1,15 @@
 "use client";
+import { useChatContext } from "@/Context/Chat/chatContext";
 import { useState } from "react";
 import { PiDotsThreeVerticalLight } from "react-icons/pi";
-const SidebarChatItem = ({ name }: { name: string }) => {
+const SidebarChatItem = ({ name ,id}: { name: string, id: number }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const {handleActiveChat, onChatDelete} = useChatContext();
 
   return (
     <div className="relative flex justify-between items-center px-4 py-2 hover:bg-gray-200 rounded-md">
       {/* Chat Name */}
-      <span className="text-text truncate">{name}</span>
+      <span onClick={() => handleActiveChat(id)} className="text-text truncate">{name}</span>
 
       {/* Three-Dot Icon */}
       <div className="relative">
@@ -24,7 +26,7 @@ const SidebarChatItem = ({ name }: { name: string }) => {
             <ul className="py-1 text-sm text-gray-700">
               <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Rename</li>
               <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Share</li>
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-500">
+              <li onClick={() => onChatDelete(id)} className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-500">
                 Delete
               </li>
             </ul>

@@ -4,7 +4,7 @@
 
 interface IMessageProps {
     isUser: boolean;
-    avatar: string;
+    avatar?: string;
     message: string;
 }
 

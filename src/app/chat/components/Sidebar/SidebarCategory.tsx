@@ -9,7 +9,6 @@ const iconStyle = "text-white";
 
 const SidebarCategory = ({ title, chats }:{ title: string; chats: { id: number; name: string }[]}) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-
   return (
     <div className="mb-4">
       {/* Category Header */}
@@ -27,7 +26,7 @@ const SidebarCategory = ({ title, chats }:{ title: string; chats: { id: number; 
       {!isCollapsed && (
         <div className="mt-2 space-y-2">
           {chats.map((chat) => (
-            <SidebarChatItem key={chat.id} name={chat.name} />
+            <SidebarChatItem key={chat.id} id={chat.id} name={chat.name} />
           ))}
         </div>
       )}
