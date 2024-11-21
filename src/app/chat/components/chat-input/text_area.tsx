@@ -1,8 +1,10 @@
 "use client";
-import { useRef } from "react";
+import { useChatContext } from "@/Context/Chat/chatContext";
+import { use, useRef } from "react";
 
 const TextArea = () => {
-  const textAreaRef = useRef(null);
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const {handleInput:onChange} = useChatContext();
 
   const handleInput = () => {
     const textarea:any = textAreaRef.current;
@@ -19,6 +21,11 @@ const TextArea = () => {
         ref={textAreaRef}
         placeholder="Send a message"
         onInput={handleInput}
+        onBlur={() => {
+          if (textAreaRef.current) {
+            onChange(textAreaRef.current.value || "");
+          }
+        }}
         rows={1}
         className="w-full p-1 text-base sm:text-lg text-text placeholder-gray-500 bg-white rounded-lg shadow-md focus:ring-4 focus:ring-secondary focus:outline-none transition-all duration-200 ease-in-out  overflow-hidden"
         style={{
