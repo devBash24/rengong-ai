@@ -9,10 +9,7 @@ export async function GET(request: Request) {
  
   // Get the authorization code and the 'next' redirect path
   const code = searchParams.get("code")
-  const next = searchParams.get("next") ?? "/home"
-
-  console.log("Code Next",code, next)
- 
+  const next = searchParams.get("next") ?? "/home" 
   if (code) {
     // Create a Supabase client
     const supabase = createClient()

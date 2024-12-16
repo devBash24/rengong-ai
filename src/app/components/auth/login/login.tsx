@@ -15,7 +15,7 @@ const LoginPage = ({isLogin}:{isLogin:boolean}) => {
 
       const onSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-         await supabase.auth.signInWithOAuth({ provider: 'github',options: { redirectTo: 'http://localhost:3000/api/auth/callback' } });
+         await supabase.auth.signInWithOAuth({ provider: 'github',options: { redirectTo: '/api/auth/callback' } });
        
       }
   return (
