@@ -1,8 +1,7 @@
 "use client"
 import { useActiveChatContext } from '@/Context/ActiveChat/activeChatContext';
-import axios from 'axios';
 import { motion } from 'framer-motion';
-import React, { useState } from 'react'
+import React from 'react'
 import { VscSend } from "react-icons/vsc";
 
 

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 
 
-const ChatMessage = ({ id,role,parts}: any) => {
+const ChatMessage = ({ role,parts}: { role: "user" | "model"; parts: [{ text: string }]}) => {
     return (
       <div
         className={`flex items-start gap-4 mb-4 ${

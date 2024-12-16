@@ -1,14 +1,12 @@
 "use client"
 import { createClient } from '@/lib/supabase/client'
 import { motion } from 'framer-motion'
-import { useRouter } from 'next/navigation'
 import React from 'react'
 import { FaGithub, FaGoogle } from 'react-icons/fa'
 
 
 const LoginPage = ({isLogin}:{isLogin:boolean}) => {
   const supabase  = createClient()
-  const router = useRouter();
     const formVariants = {
         hidden: { opacity: 0, x: isLogin ? -50 : 50 },
         visible: { opacity: 1, x: 0 },

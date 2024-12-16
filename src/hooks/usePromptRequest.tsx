@@ -1,4 +1,4 @@
-import { IChat, IMessage } from "@/Context/ActiveChat/activeChatProvider";
+import { IChat } from "@/Context/ActiveChat/activeChatProvider";
 import { useMutation } from "@tanstack/react-query"
 import axios from "axios";
 

@@ -33,8 +33,8 @@ const ChatWindow = () => {
       );
     }
 
-    return activeChat.messages.map(({ id,role, parts }, index) => (
-      <ChatMessage key={id+JSON.stringify(parts)} id={id} role={role} parts={parts} />
+    return activeChat.messages.map(({ id,role, parts }) => (
+      <ChatMessage key={id+JSON.stringify(parts)}  role={role} parts={parts} />
     ));
   };
 

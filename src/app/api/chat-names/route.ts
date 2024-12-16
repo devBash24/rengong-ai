@@ -6,7 +6,7 @@ import { getUserServerSession } from "../auth/getUserSession";
 
 
 
-export async function GET(request: NextRequest) {
+export async function GET() {
     try {
       const { id } = await getUserServerSession();
       const chats = await getChats(id);

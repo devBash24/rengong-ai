@@ -1,7 +1,7 @@
 import { v4 as uuid } from "uuid";
 
 
-export const newMessage = (message: string,role?: string) => {
+export const newMessage = (message: string) => {
     return {
         role: "user",
         parts: [{ text: message }],

@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { QueryProvider } from "@/Context/TanStack Query/queryProvider";
-import { createClient } from "@/lib/supabase/server";
-import { redirect } from "next/navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

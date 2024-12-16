@@ -1,5 +1,4 @@
 "use client"
-import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { signOut } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';

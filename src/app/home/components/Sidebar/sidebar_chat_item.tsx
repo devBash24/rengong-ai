@@ -11,6 +11,7 @@ const SidebarChatItem = ({ name ,id}: { name: string, id: string }) => {
 
   const onChatDelete = (id: string) => {
     // Handle chat deletion logic here
+    console.log(`Deleting chat with ID: ${id}`);
   };
 
   return (

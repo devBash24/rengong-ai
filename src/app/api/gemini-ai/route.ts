@@ -34,9 +34,8 @@ export async function POST(request: NextRequest) {
         ],
       });
       const response = await chat.sendMessage(prompt);
-      console.log(response.response.text());
-      let newHistory =[...activeChat.messages, {id:uuid(), role: 'user',parts: [{text: prompt}]}]
-      newHistory.push({id:uuid(), role: 'assistant',parts: [{text: response.response.text()}]})
+      const newHistory =[...activeChat.messages, {id:uuid(), role: 'user',parts: [{text: prompt}]}]
+      newHistory.push({id:uuid(), role: 'model',parts: [{text: response.response.text()}]})
       await updateChats(id,newHistory as IMessage[] , activeChat.id, activeChat.name);
 
     return NextResponse.json(
@@ -62,7 +61,7 @@ const updateChats = async (userId: string,  message: IMessage[],chatId: string,n
       return data[0].id
     }
     //Update chat messages
-    const {error, data} = await supabase.from("chats").update({messages: message}).eq("id", chatId).select("*")
+    const {error} = await supabase.from("chats").update({messages: message}).eq("id", chatId).select("*")
   
     if(error){
       throw error

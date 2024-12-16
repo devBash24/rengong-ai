@@ -1,9 +1,7 @@
 "use client"
 import { ReactNode, useState } from "react";
 import { NavigationContext } from "./navigationContext";
-import useFetchChat from "@/hooks/useFetchChat";
-import useFetchChatNames from "@/hooks/useFetchChatNames";
-import { IGroupedChats } from "@/lib/organize_messages";
+
 import { useMediaQuery } from "react-responsive";
 
 

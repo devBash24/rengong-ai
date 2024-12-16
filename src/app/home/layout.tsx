@@ -3,8 +3,6 @@ import Navbar from "./components/Navbar/navbar";
 import Sidebar from "./components/Sidebar/sidebar";
 import ChatNamesProvider from "@/Context/ChatNames/chatNamesProvider";
 import ActiveChatProvider from "@/Context/ActiveChat/activeChatProvider";
-import { createClient } from "@/lib/supabase/server";
-import { redirect } from "next/navigation";
 
 export default async function Layout({
   children,

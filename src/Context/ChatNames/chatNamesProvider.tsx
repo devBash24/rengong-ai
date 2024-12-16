@@ -2,8 +2,6 @@
 import { ReactNode, useEffect, useState } from "react";
 import { ChatNameContext } from "./chatNamesContext";
 import { IGroupedChats } from "@/lib/organize_messages";
-import { QueryClient, useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import useUpdateChatName from "@/hooks/useUpdateChatName";
 import useFetchChatNames from "@/hooks/useFetchChatNames";
 
@@ -20,7 +18,7 @@ export interface IChatNamesContext {
 const ChatNamesProvider = ({ children }: { children: ReactNode }) => {
   const { data, isLoading, isError,isFetching } = useFetchChatNames()
   const [chatNames, setChatNames] = useState<IGroupedChats | null>(data as IGroupedChats | null);
-  const {mutateAsync:updateChatName,status,isError:isChatNameError} = useUpdateChatName();
+  const {mutateAsync:updateChatName} = useUpdateChatName();
 
 
   useEffect(() => {

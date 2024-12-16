@@ -1,5 +1,5 @@
 "use client";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode,  useState } from "react";
 import { ActiveChatContext } from "./activeChatContext";
 import useFetchChat from "@/hooks/useFetchChat";
 import { useQueryClient } from "@tanstack/react-query";
@@ -46,7 +46,7 @@ const ActiveChatProvider = ({ children }: { children: ReactNode }) => {
     status: fetchChatActiveStatus,
     setActiveChat,
   } = useFetchChat();
-  const { data, mutateAsync, status:promptStatus, isError } = usePromptRequest();
+  const { mutateAsync, status:promptStatus } = usePromptRequest();
   const [title, setTitle] = useState(activeChat?.name || "Untitled");
   const {isMobile,isSidebarOpen,toggleSidebar} = useNavigation()
 
@@ -61,7 +61,7 @@ const ActiveChatProvider = ({ children }: { children: ReactNode }) => {
 
   const instantiateNewChat = () => {
     if (activeChat) return activeChat;
-    let newChat: IChat = createNewChat(title);
+    const newChat: IChat = createNewChat(title);
     setActiveChat(newChat);
     queryClient.invalidateQueries({ queryKey: ["chatNames"] });
     return newChat;
@@ -110,7 +110,7 @@ const ActiveChatProvider = ({ children }: { children: ReactNode }) => {
       setPrompt("");
       const response = await mutateAsync({
         prompt: prompt,
-        chat: activeChatHistory!!,
+        chat: activeChatHistory,
       });
       setActiveChat((prevChat: any) => {
         if (!prevChat) {

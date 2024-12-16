@@ -19,7 +19,7 @@ const RenderChatNames = ({ data }: { data: IGroupedChats }) => {
       if (key === "older") {
         // Handle "older" category separately
         return Object.entries(value).map(([monthYear, olderChats]) => {
-          if ((olderChats as any).length === 0) return null; // Skip empty months
+          if ((olderChats as { id: string; name: string }[]).length === 0) return null; // Skip empty months
           return (
             <SidebarCategory
               key={monthYear}
