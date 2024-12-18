@@ -1,21 +1,25 @@
 "use client";
 
 import { useActiveChatContext } from "@/Context/ActiveChat/activeChatContext";
-import { useState } from "react";
+import { useChatNames } from "@/Context/ChatNames/chatNamesContext";
+import { useEffect, useState } from "react";
 import { PiDotsThreeVerticalLight } from "react-icons/pi";
+import RenameChatModal from "./renameChatModal";
 const SidebarChatItem = ({ name ,id}: { name: string, id: string }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const {onSelectChat} = useActiveChatContext();
+  const {onChatDelete} = useChatNames()
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-
-
-  const onChatDelete = (id: string) => {
-    // Handle chat deletion logic here
-    console.log(`Deleting chat with ID: ${id}`);
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
   };
 
+  const handleCloseModal = () => {
+    setIsModalOpen(false);  
+  };
   return (
-    <div className="relative flex justify-between items-center px-4 py-2 hover:bg-gray-200 rounded-md">
+    <div  className="relative flex justify-between items-center px-4 py-2 hover:bg-gray-200 rounded-md">
       {/* Chat Name */}
       <span onClick={() => onSelectChat(id)} className="text-text text-base text-nowrap truncate">{name}</span>
 
@@ -30,17 +34,19 @@ const SidebarChatItem = ({ name ,id}: { name: string, id: string }) => {
 
         {/* Dropdown Menu */}
         {menuOpen && (
-          <div className="absolute right-0 top-8 w-32 bg-white shadow-lg rounded-md z-10">
+          <div onClick={(e)=>e.stopPropagation()} className="absolute right-0 top-8 w-32 bg-white shadow-lg rounded-md z-10">
             <ul className="py-1 text-sm text-gray-700">
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Rename</li>
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Share</li>
-              <li onClick={() => onChatDelete(id)} className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-500">
+              <button onClick={handleOpenModal} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Rename</button>
+              <button onClick={() => onChatDelete(id)} className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-500">
                 Delete
-              </li>
+              </button>
             </ul>
           </div>
         )}
       </div>
+      {
+        isModalOpen && <RenameChatModal handleClose={handleCloseModal} chatId={id} chatName={name}/>
+      }
     </div>
   );
 };

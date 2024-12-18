@@ -29,7 +29,7 @@ export interface IActiveChatContext {
   prompt: string;
   setPrompt: (prompt: string) => void;
   instantiateNewChat: () => void;
-  onTitleChange: (title: string) => void;
+  onTitleChange: (title: string, chatId?: string) => void;
   fetchChatActiveStatus: "error" | "idle" | "pending" | "success"
   title: string,
   setTitle: (title: string) => void
@@ -135,13 +135,17 @@ const ActiveChatProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const onTitleChange = async (newTitle: string) => {
+  const onTitleChange = async (newTitle: string, chatId?: string) => {
     if (newTitle === "") {
       setTitle(activeChat?.name || "Untitled");
       return;
     }
     try {
-      await updateChatName({ chatId: activeChat!.id, chatName: newTitle });
+      if(chatId){
+        await updateChatName({ chatId: chatId, chatName: newTitle });
+      }else{
+        await updateChatName({ chatId: activeChat!.id, chatName: newTitle });
+      }
       console.log("Chat name updated");
       queryClient.invalidateQueries({ queryKey: ["chatNames"] });
     } catch (error) {
