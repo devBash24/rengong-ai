@@ -15,8 +15,9 @@ const SendButton = () => {
       className="text-2xl text-white flex-shrink-1 shadow-lg hover:cursor-pointer"
       onClick={() => handlePromptRequest()}
       tabIndex={0}
+      role="button"
     >
-      <VscSend size={24} />
+      <VscSend  size={24} />
     </motion.div>
   );
 };

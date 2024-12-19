@@ -7,7 +7,7 @@ const TextArea = () => {
   const {  prompt, setPrompt} = useActiveChatContext()
   const {isSidebarOpen} = useNavigation ()
   return (
-    <form className={`relative ${isSidebarOpen?'z-0':'z-50'} w-full mx-auto px-4  flex-shrink-1`}>
+    <form className={`relative  w-full mx-auto px-4  flex-shrink-1`}>
       <motion.textarea
         placeholder="Send a message"
         onChange={(e) => setPrompt(e.target.value)}
