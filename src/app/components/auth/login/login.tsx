@@ -1,5 +1,5 @@
 "use client"
-import { createClient } from '@/lib/supabase/client'
+import { createClient, loginWithOAuthProvider } from '@/lib/supabase/client'
 import { motion } from 'framer-motion'
 import { usePathname, useRouter } from 'next/navigation'
 import React from 'react'
@@ -18,12 +18,13 @@ const LoginPage = ({isLogin}:{isLogin:boolean}) => {
 
       const onSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-         const {error, data} =await supabase.auth.signInWithOAuth({ provider: 'github',options: { redirectTo: origin+'home'} });
-         if (error) {
-           console.error(error);
-           return
-         }
-         router.push(data.url)
+        alert("Under Construction");
+        //  const {error, data} =await supabase.auth.signInWithOAuth({ provider: 'github',options: { redirectTo: origin+'home'} });
+        //  if (error) {
+        //    console.error(error);
+        //    return
+        //  }
+        //  router.push(data.url)
       }
   return (
     <motion.div
@@ -63,14 +64,14 @@ const LoginPage = ({isLogin}:{isLogin:boolean}) => {
               </form>
               <div className="mt-4 text-center">
                 <button
-                  onClick={onSubmit}
+                  onClick={async () => await loginWithOAuthProvider('google')}
                   className="w-full flex items-center justify-center gap-2 bg-white border border-primary text-primary py-2 rounded-lg hover:bg-primary/10 mb-2"
                 >
                   <FaGoogle className="text-lg" />
                   Login with Google
                 </button>
                 <button
-                  onClick={onSubmit}
+                  onClick={async () => await loginWithOAuthProvider('github')}
                   className="w-full flex items-center justify-center gap-2 bg-white border border-secondary text-secondary py-2 rounded-lg hover:bg-secondary/10"
                 >
                   <FaGithub className="text-lg" />

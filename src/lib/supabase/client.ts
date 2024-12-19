@@ -1,6 +1,6 @@
 import "client-only"
  
-import { createBrowserClient } from "@supabase/ssr"
+import { createBrowserClient, } from "@supabase/ssr"
  
 export function createClient() {
   return createBrowserClient(
@@ -11,3 +11,15 @@ export function createClient() {
 
 
 export const signOut =async () => await createClient().auth.signOut()
+
+export const loginWithOAuthProvider = async (provider: 'github' | 'google') =>{
+  const supabase = createClient()
+  const {data, error} = await supabase.auth.signInWithOAuth({
+    provider: provider,
+   })
+   if(error){
+     throw error.message
+   }
+   return data
+}
+

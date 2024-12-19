@@ -4,7 +4,7 @@ import InputBar from './components/chat-input/input_bar'
 
 const Home = () => {
   return (
-    <div  className='flex flex-col relative bg-background max-h-[calc(100vh-64px)]  h-full w-full'>
+    <div  className='flex flex-col relative bg-background max-h-[calc(100vh-56px)]  h-full w-full'>
     <ChatWindow />
     <InputBar />
 </div>

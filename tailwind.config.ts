@@ -48,6 +48,7 @@ export default {
         'sidebar': 'calc(100vh - 64px)',
         'sidebarMobile': 'calc(100vh - 56px)',
         'sidebarActive': 'calc(100vh - 48px)',
+        'chatWindow': 'calc(100vh - 200px)',
       }
     },
   },

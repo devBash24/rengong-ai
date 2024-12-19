@@ -14,7 +14,6 @@ const usePromptRequest = () => {
             return response.data.data;
         },
         onSuccess: (data) => {
-            console.log(data);
             return  data
         },
         onError: (error) => {

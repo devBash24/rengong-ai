@@ -38,11 +38,12 @@ const Sidebar = () => {
       <div className="relative">
         <div
           aria-hidden={!isSidebarOpen}
+    
           className={`${
             isSidebarOpen
               ? "translate-x-0"
               : "-translate-x-[100vw] sm:translate-x-0"
-          } z-50 transition-all duration-300 ease-in-out 
+          }  transition-all duration-300 ease-in-out 
           top-[calc(64px+56px)] h-[calc(100vh-64px-56px)] 
           sm:h-[calc(100vh-64px-56px)] w-full sm:w-60 sm:static overflow-y-auto`}
         >
