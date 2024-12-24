@@ -12,7 +12,7 @@ const Sidebar = () => {
   const { toggleSidebar, isSidebarOpen, isMobile } = useNavigation();
   const { onSelectChat } = useActiveChatContext();
   return (
-    <div className={`w-full h-12 bg-white shadow-xl sm:w-60 sm:h-full ${isSidebarOpen ? "z-50" : "z-0"}`}>
+    <div className={`w-full h-12 bg-white shadow-xl sm:w-60 sm:h-full ${isSidebarOpen ? "z-20" : "z-0"}`}>
       {/* Header Section */}
       <div className="flex justify-between items-center p-2 h-12">
         <div className="flex items-center gap-2">

@@ -1,5 +1,5 @@
 "use client";
-import { ReactNode,  useState } from "react";
+import { ReactNode, useState } from "react";
 import { ActiveChatContext } from "./activeChatContext";
 import useFetchChat from "@/hooks/useFetchChat";
 import { useQueryClient } from "@tanstack/react-query";
@@ -10,7 +10,7 @@ import { v4 as uuid } from "uuid";
 import { useChatNames } from "../ChatNames/chatNamesContext";
 import { useNavigation } from "../Navigation/navigationContext";
 export interface IMessage {
-  id: number;
+  id: any;
   role: "user" | "model";
   parts: [{ text: string }];
 }
@@ -30,11 +30,10 @@ export interface IActiveChatContext {
   setPrompt: (prompt: string) => void;
   instantiateNewChat: () => void;
   onTitleChange: (title: string, chatId?: string) => void;
-  fetchChatActiveStatus: "error" | "idle" | "pending" | "success"
-  title: string,
-  setTitle: (title: string) => void
-  promptStatus: "error" | "idle" | "pending" | "success"
-  
+  fetchChatActiveStatus: "error" | "idle" | "pending" | "success";
+  title: string;
+  setTitle: (title: string) => void;
+  promptStatus: "error" | "idle" | "pending" | "success";
 }
 
 const ActiveChatProvider = ({ children }: { children: ReactNode }) => {
@@ -46,18 +45,11 @@ const ActiveChatProvider = ({ children }: { children: ReactNode }) => {
     status: fetchChatActiveStatus,
     setActiveChat,
   } = useFetchChat();
-  const { mutateAsync, status:promptStatus } = usePromptRequest();
+  const { mutateAsync, status: promptStatus } = usePromptRequest();
   const [title, setTitle] = useState(activeChat?.name || "Untitled");
-  const {isMobile,isSidebarOpen,toggleSidebar} = useNavigation()
+  const { isMobile, isSidebarOpen, toggleSidebar } = useNavigation();
 
   const queryClient = useQueryClient();
-
-
-  
-
-
-
-
 
   const instantiateNewChat = () => {
     if (activeChat) return activeChat;
@@ -68,7 +60,7 @@ const ActiveChatProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const onSelectChat = async (chatId?: string) => {
-    if(isMobile && isSidebarOpen) toggleSidebar()
+    if (isMobile && isSidebarOpen) toggleSidebar();
     if (!chatId) {
       setActiveChat(null);
       setTitle("Untitled");
@@ -88,7 +80,7 @@ const ActiveChatProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const handlePromptRequest = async () => {
-    if(promptStatus === "pending") return
+    if (promptStatus === "pending") return;
     try {
       const activeChatHistory = instantiateNewChat();
       setActiveChat((prevChat: any) => {
@@ -141,9 +133,9 @@ const ActiveChatProvider = ({ children }: { children: ReactNode }) => {
       return;
     }
     try {
-      if(chatId){
+      if (chatId) {
         await updateChatName({ chatId: chatId, chatName: newTitle });
-      }else{
+      } else {
         await updateChatName({ chatId: activeChat!.id, chatName: newTitle });
       }
       console.log("Chat name updated");
@@ -167,7 +159,7 @@ const ActiveChatProvider = ({ children }: { children: ReactNode }) => {
         fetchChatActiveStatus,
         title,
         setTitle,
-        promptStatus
+        promptStatus,
       }}
     >
       {children}

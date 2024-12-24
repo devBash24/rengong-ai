@@ -2,7 +2,6 @@
 import React from 'react'
 import TextArea from './text_area'
 import SendButton from './send_btn'
-import AttachmentButton from './attachment_btn'
 import { motion } from 'framer-motion';
 
 
@@ -15,7 +14,6 @@ const InputBar = () => {
       transition={{ duration: 0.5 }}
 
     >
-      {/* <AttachmentButton /> */}
       <TextArea />
       <SendButton />
     </motion.div>

@@ -16,7 +16,7 @@ export default async function Layout({
         <ActiveChatProvider>
           <div className="flex flex-col bg-background h-screen max-h-screen w-screen">
             <Navbar />
-            <div className="flex flex-col h-full max-h-sidebar w-full flex-1 sm:flex-row ">
+            <div  className="flex flex-col h-full max-h-[calc(100vh-56px)] w-full flex-1 sm:flex-row ">
               <Sidebar />
               {children}
             </div>

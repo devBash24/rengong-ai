@@ -17,13 +17,13 @@ const DropdownMenu = ({isOpen}:{ isOpen:boolean}) => {
   // Framer Motion animation variants
   const menuVariants = {
     open: {
-      opacity: 1,
+      display:'block',
       scale: 1,
       y: 15,
       transition: { duration: 0.2, ease: 'easeInOut' },
     },
     closed: {
-      opacity: 0,
+      display:'none',
       scale: 0.95,
       y: -10,
       transition: { duration: 0.2, ease: 'easeInOut' },
@@ -31,27 +31,20 @@ const DropdownMenu = ({isOpen}:{ isOpen:boolean}) => {
   };
 
   return (
-    <div className="relative inline-block text-left">
+    <div className="relative inline-block text-left bg-white">
       {/* Dropdown Menu */}
       <motion.div
         initial="closed"
-        style={{zIndex: 2000}}
+        // style={{zIndex: 2000}}
         animate={isOpen ? 'open' : 'closed'}
         variants={menuVariants}
-        className="absolute right-0  mt-2 w-48 origin-top-right rounded-lg  shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+        className="z-50 absolute right-0 bg-white mt-2 w-48 origin-top-right rounded-lg  shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
       >
-        <div className="">
-          {/* Profile Settings */}
-          <button
-            className="block w-full px-4 py-2 text-sm text-text hover:bg-background-alt rounded-md"
-            onClick={() => console.log('Navigate to Profile Settings')}
-          >
-            Profile Settings
-          </button>
+        <div>
           {/* Logout */}
           <button
           onClick={signOutUser}
-            className="block w-full px-4 py-2 text-sm text-text hover:bg-background-alt rounded-md"
+            className="block w-full px-4 py-2 text-sm text-text hover:bg-background-alt rounded-md font-bold"
           >
             Logout
           </button>

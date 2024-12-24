@@ -5,7 +5,6 @@ import NoMessage from "./no_message";
 import { useActiveChatContext } from "@/Context/ActiveChat/activeChatContext";
 import LoadingOverlay from "../Sidebar/loadingSpinner";
 
-
 const ChatWindow = () => {
   const { activeChat,fetchChatActiveStatus } = useActiveChatContext();
   const containerRef = useRef<HTMLDivElement | null>(null);
