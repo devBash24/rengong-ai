@@ -17,6 +17,8 @@ export const loginWithOAuthProvider = async (provider: 'github' | 'google') =>{
   const {data, error} = await supabase.auth.signInWithOAuth({
     provider: provider,
    })
+
+   
    if(error){
      throw error.message
    }

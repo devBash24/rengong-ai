@@ -3,9 +3,11 @@ import Image from "next/image";
 const ChatMessage = ({
   role,
   parts,
+  avatar,
 }: {
   role: "user" | "model";
   parts: [{ text: string }];
+  avatar: string;
 }) => {
   return (
     <div
@@ -15,7 +17,7 @@ const ChatMessage = ({
     >
       {/* Avatar */}
       <Image
-        src={"/assets/default-avatar.png"}
+        src={avatar || "/assets/default-avatar.png"}
         alt="Avatar"
         className="w-10 h-10 rounded-full shadow-md"
         width={40}

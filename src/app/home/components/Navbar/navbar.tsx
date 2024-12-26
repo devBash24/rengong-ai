@@ -9,7 +9,7 @@ const Navbar = () => {
     <div className='bg-primary h-navbar max-h-navbar flex justify-between items-center px-4 py-2'>
         <Logo />
         <div onClick={toggleNavbar} className='flex  gap-2 items-center hover:cursor-pointer'>
-        <Avatar />
+        <Avatar/>
         <DropdownMenu  isOpen={isNavbarOpen}/>
         </div>
     </div>
