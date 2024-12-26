@@ -7,7 +7,7 @@ const queryClient = new QueryClient();
 export const QueryProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <Toaster position="bottom-center" />
+      <Toaster position="top-right"  />
       {children}
     </QueryClientProvider>
   );

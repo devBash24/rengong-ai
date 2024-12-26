@@ -10,6 +10,7 @@ import { v4 as uuid } from "uuid";
 import { useChatNames } from "../ChatNames/chatNamesContext";
 import { useNavigation } from "../Navigation/navigationContext";
 import { useError } from "@/hooks/useError";
+import toast from "react-hot-toast";
 export interface IMessage {
   id: any;
   role: "user" | "model";
@@ -82,8 +83,12 @@ const ActiveChatProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const handlePromptRequest = async () => {
-    if (promptStatus === "pending") return;
     try {
+      if (promptStatus === "pending") return;
+      if(prompt === ""){
+        toast.error("Please enter a prompt");
+        return;
+      }
       const activeChatHistory = instantiateNewChat();
       setActiveChat((prevChat: any) => {
         if (!prevChat) {
@@ -140,7 +145,6 @@ const ActiveChatProvider = ({ children }: { children: ReactNode }) => {
       } else {
         await updateChatName({ chatId: activeChat!.id, chatName: newTitle });
       }
-      console.log("Chat name updated");
       queryClient.invalidateQueries({ queryKey: ["chatNames"] });
     } catch (e) {
       handleError(e);
