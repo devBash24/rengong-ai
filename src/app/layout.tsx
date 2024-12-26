@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Rengong Ai",
   description: "AI Chatbot",
+  icons: {
+    icon: "/assets/logo.ico",
+  },
 };
 
 export default async function RootLayout({
