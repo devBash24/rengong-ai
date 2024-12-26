@@ -2,11 +2,13 @@ import { IChat } from "@/Context/ActiveChat/activeChatProvider";
 import { useMutation } from "@tanstack/react-query"
 import axios from "axios";
 import { useState } from "react";
+import { useError } from "./useError";
 
 
 
 const useFetchChat = () => {
     const [activeChat, setActiveChat] = useState<IChat| null>(null);
+    const {handleError} = useError()
     const {isError,mutateAsync,status} = useMutation({
         mutationKey: ["activeChat"],
         mutationFn: async(data:{chatId: string}) => {
@@ -20,7 +22,7 @@ const useFetchChat = () => {
             setActiveChat(data);
         },
         onError: (error) => {
-            console.log(error);
+            handleError(error);
         }
     })
     return{

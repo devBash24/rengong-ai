@@ -34,8 +34,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
         // Set up auth state listener
         const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-            setUser(session?.user ?? null)
-            
+            setUser(session?.user ?? null)   
             // Redirect based on auth status
             if (session) {
                 // User is logged in

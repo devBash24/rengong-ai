@@ -1,9 +1,17 @@
 "use client"
 import { motion } from 'framer-motion';
-import React from 'react'
+import React, { useState } from 'react'
 import { FaGithub, FaGoogle } from 'react-icons/fa';
+import { onSignUp } from './onSignUp';
 
 const SignUp = ({isLogin}:{isLogin:boolean}) => {
+    const [signUpForm,setSignUpForm] = useState({
+        email:"",
+        password:""
+    })
+    const handleChange = (e:React.ChangeEvent<HTMLInputElement>) =>{
+        setSignUpForm({...signUpForm,[e.target.name]:e.target.value})
+    }
     const formVariants = {
         hidden: { opacity: 0, x: isLogin ? -50 : 50 },
         visible: { opacity: 1, x: 0 },
@@ -25,6 +33,8 @@ const SignUp = ({isLogin}:{isLogin:boolean}) => {
                   <input
                     type="email"
                     name="email"
+                    value={signUpForm.email}
+                    onChange={handleChange}
                     className="w-full px-4 py-2 rounded-lg border focus:outline-primary focus:ring-1 focus:ring-primary"
                     placeholder="Enter your email"
                   />
@@ -34,12 +44,15 @@ const SignUp = ({isLogin}:{isLogin:boolean}) => {
                   <input
                     type="password"
                     name="password"
+                    value={signUpForm.password}
+                    onChange={handleChange}
                     className="w-full px-4 py-2 rounded-lg border focus:outline-primary focus:ring-1 focus:ring-primary"
                     placeholder="Create a password"
                   />
                 </div>
                 <button
                   type="submit"
+                  onClick={(e) => {e.preventDefault();onSignUp(signUpForm)}}
                   className="w-full bg-secondary text-white py-2 rounded-lg hover:bg-secondary/90"
                 >
                   Signup
@@ -62,5 +75,4 @@ const SignUp = ({isLogin}:{isLogin:boolean}) => {
             </motion.div>
   )
 }
-
 export default SignUp

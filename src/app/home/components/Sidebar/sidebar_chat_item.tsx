@@ -36,8 +36,8 @@ const SidebarChatItem = ({ name ,id}: { name: string, id: string }) => {
         {menuOpen && (
           <div onClick={(e)=>e.stopPropagation()} className="absolute right-0 top-8 w-32 bg-white shadow-lg rounded-md z-10">
             <ul className="py-1 text-sm text-gray-700">
-              <button onClick={handleOpenModal} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Rename</button>
-              <button onClick={() => onChatDelete(id)} className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-500">
+              <button onClick={handleOpenModal} className="px-4 py-2 hover:bg-gray-100 cursor-pointer  w-full">Rename</button>
+              <button onClick={() => onChatDelete(id)} className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-500 w-full">
                 Delete
               </button>
             </ul>

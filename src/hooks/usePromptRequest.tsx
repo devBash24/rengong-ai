@@ -1,10 +1,11 @@
 import { IChat } from "@/Context/ActiveChat/activeChatProvider";
 import { useMutation } from "@tanstack/react-query"
 import axios from "axios";
-
+import { useError } from "./useError";
 
 
 const usePromptRequest = () => {
+    const {handleError} = useError()
     const {data, isError,mutateAsync,status} = useMutation({
         mutationFn: async(data:{prompt: string, chat:IChat}) => {
             const response = await axios.post("/api/gemini-ai", data);
@@ -17,10 +18,9 @@ const usePromptRequest = () => {
             return  data
         },
         onError: (error) => {
-            console.log(error);
+            handleError(error);
         }
     })
-
     return{
         isError,
         mutateAsync,

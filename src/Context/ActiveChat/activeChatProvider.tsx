@@ -9,6 +9,7 @@ import usePromptRequest from "@/hooks/usePromptRequest";
 import { v4 as uuid } from "uuid";
 import { useChatNames } from "../ChatNames/chatNamesContext";
 import { useNavigation } from "../Navigation/navigationContext";
+import { useError } from "@/hooks/useError";
 export interface IMessage {
   id: any;
   role: "user" | "model";
@@ -39,6 +40,7 @@ export interface IActiveChatContext {
 const ActiveChatProvider = ({ children }: { children: ReactNode }) => {
   const [prompt, setPrompt] = useState("");
   const { updateChatName } = useChatNames();
+  const { handleError } = useError();
   const {
     activeChat,
     mutateAsync: fetchActiveChat,
@@ -75,7 +77,7 @@ const ActiveChatProvider = ({ children }: { children: ReactNode }) => {
       }
       setTitle(dta.name);
     } catch (e) {
-      console.log((e as Error).message);
+      handleError(e);
     }
   };
 
@@ -123,7 +125,7 @@ const ActiveChatProvider = ({ children }: { children: ReactNode }) => {
         };
       });
     } catch (e) {
-      console.log((e as Error).message);
+      handleError(e);
     }
   };
 
@@ -140,8 +142,8 @@ const ActiveChatProvider = ({ children }: { children: ReactNode }) => {
       }
       console.log("Chat name updated");
       queryClient.invalidateQueries({ queryKey: ["chatNames"] });
-    } catch (error) {
-      console.log(error);
+    } catch (e) {
+      handleError(e);
       setTitle(activeChat?.name || "Untitled");
     }
   };
